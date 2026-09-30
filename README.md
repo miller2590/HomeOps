@@ -1,105 +1,65 @@
 # HomeOps
 
-HomeOps is a simple home maintenance tracker built with Python, SQLite, and NiceGUI.
+HomeOps is a small single-user home maintenance tracker built with Python, NiceGUI, and SQLite.
 
-The application is designed to help homeowners keep track of recurring maintenance tasks, completion history, and upcoming due dates.
+This first version supports:
 
-## Features
-
-* Add, edit, and delete maintenance items
-* Set recurring maintenance intervals
-* Track completed maintenance
-* Automatically calculate next due dates
-* View upcoming and overdue tasks
-* Store maintenance data using SQLite
-* Simple web-based interface using NiceGUI
+- Creating recurring maintenance tasks
+- Updating and deactivating tasks
+- Marking tasks complete and recording history
+- Automatically calculating `next_due` using `completed_date + frequency_days`
+- Viewing overdue tasks, due-soon tasks, and recent completions on a dashboard
 
 ## Tech Stack
 
-* Python
-* NiceGUI
-* SQLite
-* Git / GitHub
+- Python
+- NiceGUI
+- SQLite (`sqlite3` from Python standard library)
 
 ## Project Structure
 
 ```text
-homeops/
-├── assets/
-├── database/
-├── models/
-├── services/
-├── ui/
+HomeOps/
 ├── main.py
-└── README.md
+├── req.txt
+├── assets/
+│   └── images/
+├── data/
+│   └── homeops.db
+├── database/
+│   ├── __init__.py
+│   └── database_manager.py
+├── models/
+│   ├── __init__.py
+│   ├── maintenance_task.py
+│   └── maintenance_history.py
+├── services/
+│   ├── __init__.py
+│   ├── maintenance_service.py
+│   └── validation_service.py
+└── ui/
+	├── __init__.py
+	├── dashboard.py
+	├── tasks_view.py
+	├── task_form.py
+	└── history_view.py
 ```
 
-## Installation
+## Run Locally (Windows PowerShell)
 
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/homeops.git
-cd homeops
-```
-
-Create a virtual environment:
-
-```bash
+```powershell
 python -m venv .venv
-```
-
-Activate the virtual environment:
-
-**Windows**
-
-```bash
-.venv\Scripts\activate
-```
-
-**macOS/Linux**
-
-```bash
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Running HomeOps
-
-```bash
+.venv\Scripts\Activate.ps1
+pip install -r req.txt
 python main.py
 ```
 
-NiceGUI will start the application and provide a local URL in the terminal.
+When the app starts, SQLite is initialized automatically at `data/homeops.db`.
 
-## Project Scope
+## Scope Notes
 
-The initial version of HomeOps focuses on the core maintenance workflow:
-
-1. Create a maintenance item
-2. Define its maintenance interval
-3. Track when it is completed
-4. Calculate the next due date
-5. Store and display maintenance history
-
-Features such as notifications, multiple properties, cloud synchronization, receipt storage, and user accounts are outside the initial project scope.
-
-## Future Improvements
-
-Possible future additions include:
-
-* Maintenance reminders
-* Multiple properties
-* Receipt and document storage
-* Maintenance cost tracking
-* Vehicle maintenance
-* Data backup and export
+The first version intentionally excludes authentication, cloud sync, notifications, budgeting, receipts, and multi-property support.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License. See `LICENSE` for details.
